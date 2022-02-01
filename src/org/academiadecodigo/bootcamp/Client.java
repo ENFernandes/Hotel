@@ -2,32 +2,36 @@ package org.academiadecodigo.bootcamp;
 
 public class Client {
     private String name;
+    private int nseiq;
     private boolean check;
     private int room;
-    private int nRoom;
-    private Hotel[] hotel = {new Hotel("cali"),new Hotel("tokyo"),new Hotel("lisbonera")};
+    private ListHotel listHotel;
+    private static Hotel[] hotel = {new Hotel(ListHotel.CALI),new Hotel(ListHotel.TOKYO),new Hotel(ListHotel.PORTOBONERA)};
 
-    public Client(String name, int nRoom){
+    public Client(String name, ListHotel listHotel){
         this.setName(name);
-        this.nRoom = nRoom;
+        this.listHotel = listHotel;
     }
 
-    public void setHotel(Hotel hotel) {
-
+    public void setHotel(ListHotel hotel) {
+        this.listHotel=hotel;
     }
 
-    public String getHotel() {
-        return hotel[nRoom].getName();
+    public ListHotel getHotel() {
+        return hotel[listHotel.ordinal()].getName();
     }
 
-    public void checkIn() {
+    public int checkIn() {
         // pedir uma cena
-        setRoom(hotel[nRoom].checkIn(this));
+        setRoom(hotel[listHotel.ordinal()].checkIn(this));
+        nseiq = getRoom();
+        return nseiq;
+
     }
 
     public void checkOut() {
         // pedir uma cena
-        setRoom(hotel[nRoom].checkOut(this));
+        setRoom(hotel[listHotel.ordinal()].checkOut(this));
     }
 
     public String getName() {
@@ -52,9 +56,13 @@ public class Client {
     }
 
     public void locationClient(){
-        checkIn();
-        System.out.println("Client: " + getName() + " is: " + isCheck() + " at: " + getHotel()  + " IN ROOM: " + hotel[nRoom].getRandomR());
-        checkOut();
-        System.out.println("Client: " + getName() + " is: " + isCheck() + " at: " + getHotel()  + " IN ROOM: " + hotel[nRoom].getRandomR());
+        if(checkIn()!=-1) {
+            System.out.println("Client: " + getName() + " is: " + isCheck() + " at: " + getHotel() + " IN ROOM: " + hotel[listHotel.ordinal()].getRandomR());
+        }
+        else {
+            new MenuHoteis(this);
+        }
+        //checkOut();
+        //System.out.println("Client: " + getName() + " is: " + isCheck() + " at: " + getHotel()  + " IN ROOM: " + hotel[listHotel.ordinal()].getRandomR());
     }
 }

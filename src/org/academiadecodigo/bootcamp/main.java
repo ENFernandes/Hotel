@@ -1,12 +1,12 @@
 package org.academiadecodigo.bootcamp;
 
+import java.util.Scanner;
+
 public class main {
     public static void main(String[] args) {
-
-        Client pc = new Client("P.C",1);
-        Client eh = new Client("E.F",0);
-        pc.locationClient();
-        eh.locationClient();
-
+        Scanner sc = new Scanner(System.in);
+        System.out.printf("\nQuantos clientes vão viajar:");
+        int qunt = sc.nextInt();
+        new MenuHoteis(qunt);
     }
 }

@@ -2,35 +2,39 @@ package org.academiadecodigo.bootcamp;
 
 public class Hotel {
 
-    private String name;
-    private Room[] rooms = new Room[100];
-    private int randomR = (int) (Math.random() * 100);
+    private ListHotel name;
+    private Room[] rooms = new Room[1];
+    private int randomR = (int) (Math.random() * 1);
 
-    public Hotel(String name)
-    {
-        for (int i = 0; i <= 99; i++) {
-            rooms[i] = new Room();
+    public Hotel(ListHotel name) {
+        for (int i = 0; i < 1; i++) {
+            rooms[i] = new Room(name);
         }
         this.name = name;
     }
 
-    public String getName() {
+    public ListHotel getName() {
         return name;
     }
 
-    public int getRandomR(){
+    public int getRandomR() {
         return randomR;
     }
 
 
-    public int checkIn(Client client)
-    {
-        client.setCheck(true);
-        rooms[randomR].setOcu(true);
-        return rooms[randomR].getRoom();
+    public int checkIn(Client client) {
+        for (Room run : rooms) {
+            if (rooms[randomR].isOcu() == false) {
+                client.setCheck(true);
+                this.rooms[randomR].setOcu(true);
+                return this.rooms[randomR].getRoom();
+            }
+        }
+        System.out.printf("\nHotel Cheio");
+        return -1;
     }
-    public int checkOut(Client client)
-    {
+
+    public int checkOut(Client client) {
         client.setCheck(false);
         rooms[randomR].setOcu(false);
         return rooms[randomR].getRoom();
