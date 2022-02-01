@@ -5,6 +5,9 @@ import java.util.Scanner;
 public class MenuHoteis {
     Scanner sc = new Scanner(System.in);
     private String name;
+
+    Options options = new Options();
+
     public MenuHoteis(Client client)
     {
         System.out.printf("\nBoa " + client.getName() + " agora diga-me qual o hotel que pretende ficar:");
@@ -37,7 +40,7 @@ public class MenuHoteis {
                 case 1:
                     Client a = new Client(name, ListHotel.CALI);
                     a.locationClient();
-
+                    // fazer new client
                     qunt -= 1;
                     break;
                 case 2:
@@ -53,6 +56,7 @@ public class MenuHoteis {
                     break;
             }
         }
+        options.OptionsMenu(); // Tem que se mudar de sitio
 
     }
 }

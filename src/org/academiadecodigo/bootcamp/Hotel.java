@@ -1,5 +1,7 @@
 package org.academiadecodigo.bootcamp;
 
+import java.util.ArrayList;
+
 public class Hotel {
 
     private ListHotel name;

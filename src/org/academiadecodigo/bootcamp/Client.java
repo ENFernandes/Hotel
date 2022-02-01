@@ -1,16 +1,45 @@
 package org.academiadecodigo.bootcamp;
 
+import java.util.ArrayList;
+
 public class Client {
     private String name;
     private int nseiq;
     private boolean check;
     private int room;
     private ListHotel listHotel;
-    private static Hotel[] hotel = {new Hotel(ListHotel.CALI),new Hotel(ListHotel.TOKYO),new Hotel(ListHotel.PORTOBONERA)};
+    private static Hotel[] hotel = {new Hotel(ListHotel.CALI),new Hotel(ListHotel.TOKYO),new Hotel(ListHotel.PORTOBONERA), new Hotel(ListHotel.NONE)};
+    private static ArrayList<Client> clientList = new ArrayList<Client>(); // CHECKOUT TRY
 
     public Client(String name, ListHotel listHotel){
         this.setName(name);
         this.listHotel = listHotel;
+        clientList.add(this); // CHECKOUT TRY
+    }
+
+    public Client(String name) {
+        this.name = name;
+        clientList.add(this); // CHECKOUT TRY
+    }
+
+    public static void showClients(String in) {
+        if (in.equals("in")) {
+            for(int i = 0; i < clientList.size(); i++) {
+                if (!(clientList.get(i).isCheck())) {
+                    System.out.println(i + ". " + clientList.get(i).getName() + "@" + clientList.get(i).getHotel());
+                }
+            }
+        } else {
+            for (int i = 0; i < clientList.size(); i++) {
+                if (clientList.get(i).isCheck()) {
+                    System.out.println(i + ". " + clientList.get(i).getName() + "@" + clientList.get(i).getHotel());
+                }
+            }
+        }
+    }
+
+    public static Client setClient(int cl) {
+        return clientList.get(cl);
     }
 
     public void setHotel(ListHotel hotel) {
@@ -30,7 +59,6 @@ public class Client {
     }
 
     public void checkOut() {
-        // pedir uma cena
         setRoom(hotel[listHotel.ordinal()].checkOut(this));
     }
 
