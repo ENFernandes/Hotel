@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class Hotel {
 
     private ListHotel name;
-    private Room[] rooms = new Room[1];
-    private int randomR = (int) (Math.random() * 1);
+    private Room[] rooms = new Room[5];
+    private int randomR = (int) (Math.random() * 5);
 
     public Hotel(ListHotel name) {
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 5; i++) {
             rooms[i] = new Room(name);
         }
         this.name = name;
